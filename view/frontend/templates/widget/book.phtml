@@ -1,15 +1,22 @@
 <?php
+/** @var Magepow\Flipbook\Helper\Data $helper */
 $helper = $this->helper('Magepow\Flipbook\Helper\Data');
-$isEnabled      = $helper->getConfigModule('general/enabled');
-$id = $this->getRequest()->getParam('id');
 
+$isEnabled = $helper->getConfigModule('general/enabled');
+$infoFlipbook = $helper->getConfigModule('general/info');
+
+$id = $this->getRequest()->getParam('id');
 $book = $this->getBook($id);
+
 if(!$isEnabled) return;
 ?>
 <div class="book-details">
     <?php if($book->getTitle()): ?>
         <h1 class="heading heading--page text-center margin-top-0 margin-bottom-xl"><?= $book->getTitle(); ?></h1>
     <?php endif; ?>
+</div>
+<div class="info-flipbook">
+    <?= $infoFlipbook ?>
 </div>
 <div class="flipbook-viewport">
     <div class="container">
